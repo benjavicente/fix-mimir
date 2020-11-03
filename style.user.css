@@ -8,17 +8,16 @@
 @license        MIT
 
 @homepageURL    https://github.com/benjavicente/fix-mimir
-@updateURL      https://raw.githubusercontent.com/benjavicente/fix-mimir/master/style.user.css
+@updateURL      https://raw.githubusercontent.com/benjavicente/fix-mimir/main/style.user.css
 
 @preprocessor   stylus
 ==/UserStyle== */
 
 @-moz-document domain("class.mimir.io") {
-    #Help--openHelpButton {
-      display: none !important;
-    }
-    #mimir .frontend-shared-components-Material-___Material__material-container___3qVam {
-      overflow: visible
-    }
+  #Help--openHelpButton {
+    display: none !important;
   }
-  
+  #mimir .frontend-shared-components-Material-___Material__material-container___3qVam {
+    overflow: visible
+  }
+}
