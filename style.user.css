@@ -10,14 +10,53 @@
 @homepageURL    https://github.com/benjavicente/fix-mimir
 @updateURL      https://raw.githubusercontent.com/benjavicente/fix-mimir/main/style.user.css
 
-@preprocessor   stylus
+@preprocessor   less
+@var select codefont "Code font" ["Ubuntu Mono*", "JetBrainsMono"]
 ==/UserStyle== */
 
 @-moz-document domain("class.mimir.io") {
+  /* font */
+  @font-face{
+    font-family: 'JetBrainsMono';
+    src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff')  format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'JetBrainsMono';
+    src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Medium.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Medium.woff')  format('woff');
+    font-weight: 600;
+    font-style: normal;
+  }
+  /* style */
   #Help--openHelpButton {
     display: none !important;
   }
-  #mimir .frontend-shared-components-Material-___Material__material-container___3qVam {
+  div[class*="CodeQuestionLayout"] {
+    max-width: 85vw
+  }
+  .ace_editor {
+    font-family: codefont, 'Monaco', 'Menlo', 'Consolas', 'source-code-pro', monospace;
+  }
+  div[class*="answer-form-content"] > div[class*="material-container"] {
     overflow: visible
+  }
+  .test-case-result-content {
+    p, br {
+      display: none
+    }
+  }
+  :not(pre) > code {
+    background: #1b1f2312;
+    border-radius: 6px;
+    padding: .1em .2em;
+    font-size: 85%;
+  }
+  @media screen and (max-width: 750px) {
+    div div[class*="AnswerFormTopBar"] div[class*="right"] {
+      display: none
+    }
   }
 }
