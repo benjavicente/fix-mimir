@@ -1,0 +1,24 @@
+/* ==UserStyle==
+@name           Fix-Mimir
+@author         benjavicente
+@version        0.0.1
+@description    "A Mimir"
+@namespace      github.com/benjavicente/fix-mimir
+
+@license        MIT
+
+@homepageURL    https://github.com/benjavicente/fix-mimir
+@updateURL      https://raw.githubusercontent.com/benjavicente/fix-mimir/master/style.user.css
+
+@preprocessor   stylus
+==/UserStyle== */
+
+@-moz-document domain("class.mimir.io") {
+    #Help--openHelpButton {
+      display: none !important;
+    }
+    #mimir .frontend-shared-components-Material-___Material__material-container___3qVam {
+      overflow: visible
+    }
+  }
+  
