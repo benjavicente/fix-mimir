@@ -12,6 +12,7 @@
 
 @preprocessor   less
 @var select codefont "Code font" ["Ubuntu Mono*", "JetBrainsMono"]
+@var checkbox show_help "Show help" 0
 ==/UserStyle== */
 @-moz-document domain("class.mimir.io") {
   /* font */
@@ -29,9 +30,9 @@
   }
   /* style */
   #Help--openHelpButton {
-    display: none !important;
+    display: if(@show_help =1, inherit, none) !important;
   }
-  div[class*="CodeQuestionLayout"] {
+  :not(div[class*="OldCodeQuestionLayout"]) div[class*="CodeQuestionLayout"] {
     max-width: 85vw
   }
   .ace_editor {
@@ -58,6 +59,9 @@
     }
   }
   div[class*="OldCodeQuestionLayout"] {
-    min-height: 800px
+    min-height: 75vh
+  }
+  div[class*="AssignmentSubmissionForm"] div[class*="padding-6x"] {
+    padding: 20px
   }
 }
