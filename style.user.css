@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Fix-Mimir
 @author         benjavicente
-@version        0.0.2
+@version        0.1.0
 @description    "A Mimir"
 @namespace      github.com/benjavicente/fix-mimir
 
@@ -11,32 +11,35 @@
 @updateURL      https://raw.githubusercontent.com/benjavicente/fix-mimir/main/style.user.css
 
 @preprocessor   less
-@var select codefont "Code font" ["Ubuntu Mono*", "JetBrainsMono"]
-@var checkbox show_help "Show help" 0
+@var select codefont "Fuente" ["Ubuntu Mono*", "JetBrainsMono"]
+@var checkbox show_help "Mostrar botón de ayuda" 0
+@var checkbox vertical "Editor abajo (vertical)" 0
 ==/UserStyle== */
 @-moz-document domain("class.mimir.io") {
   /* font */
   @font-face {
-    font-family: 'JetBrainsMono';
-    src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff') format('woff');
+    font-family: "JetBrainsMono";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff2") format("woff2"),
+      url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff") format("woff");
     font-weight: 400;
     font-style: normal;
   }
   @font-face {
-    font-family: 'JetBrainsMono';
-    src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Medium.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Medium.woff') format('woff');
+    font-family: "JetBrainsMono";
+    src: url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Medium.woff2") format("woff2"),
+      url("https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Medium.woff") format("woff");
     font-weight: 600;
     font-style: normal;
   }
   /* style */
   #Help--openHelpButton {
-    display: if(@show_help =1, inherit, none) !important;
+    display: if(@show_help = 1, inherit, none) !important;
   }
-  :not(div[class*="OldCodeQuestionLayout"]) div[class*="CodeQuestionLayout"] {
-    max-width: 85vw
+  :not(div[class*="OldCodeQuestionLayout"]) div[class*="CodeQuestionLayout"] when(@vertical = 0) {
+    max-width: 85vw;
   }
   .ace_editor {
-    font-family: @codefont, 'Monaco', 'Menlo', 'Consolas', 'source-code-pro', monospace;
+    font-family: @codefont, "Monaco", "Menlo", "Consolas", "source-code-pro", monospace;
   }
   div[class*="answer-form-content"] > div[class*="material-container"] {
     overflow: visible;
@@ -50,18 +53,31 @@
   :not(pre) > code {
     background: #1b1f2312;
     border-radius: 6px;
-    padding: .1em .2em;
+    padding: 0.1em 0.2em;
     font-size: 85%;
   }
   @media screen and (max-width: 750px) {
-    div div[class*="AnswerFormTopBar"] div[class*="right"] {
+    div div[class*="AnswerFormTopBar"] > div[class*="right"] {
       display: none;
     }
   }
   div[class*="OldCodeQuestionLayout"] {
-    min-height: 75vh
+    min-height: 70vh;
   }
-  div[class*="AssignmentSubmissionForm"] div[class*="padding-6x"] {
-    padding: 20px
+  div[class*="AssignmentSubmissionForm"] > div[class*="padding-6x"] {
+    padding: 20px;
+  }
+  // Vertical layout
+  div[class*="AssignmentSubmissionForm__answer-form-content"] when(@vertical = 1) {
+    flex-direction: column;
+  }
+  :not(div[class*="OldCodeQuestionLayout"]) {
+    &:after {
+      background: none;
+    }
+    & > div[class*="CodeQuestionLayout-___CodeQuestionLayout"] when(@vertical = 1) {
+      min-height: 85vh;
+      width: unset;
+    }
   }
 }
