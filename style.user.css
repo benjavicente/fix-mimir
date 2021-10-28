@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Fix-Mimir
 @author         benjavicente
-@version        0.1.0
+@version        0.2.0
 @description    "A Mimir"
 @namespace      github.com/benjavicente/fix-mimir
 
@@ -16,6 +16,11 @@
 @var checkbox vertical "Editor abajo (vertical)" 0
 ==/UserStyle== */
 @-moz-document domain("class.mimir.io") {
+  /* editor */
+  .edit-question .mce-wrapper-content {
+    max-height: 85vh;
+    overflow-y: scroll
+  }
   /* font */
   @font-face {
     font-family: "JetBrainsMono";
@@ -61,9 +66,6 @@
       display: none;
     }
   }
-  div[class*="OldCodeQuestionLayout"] {
-    min-height: 70vh;
-  }
   div[class*="AssignmentSubmissionForm"] > div[class*="padding-6x"] {
     padding: 20px;
   }
@@ -72,12 +74,12 @@
     flex-direction: column;
   }
   :not(div[class*="OldCodeQuestionLayout"]) {
-    &:after {
+      &:after {
       background: none;
-    }
-    & > div[class*="CodeQuestionLayout-___CodeQuestionLayout"] when(@vertical = 1) {
-      min-height: 85vh;
-      width: unset;
+     }
+     &>div[class*="CodeQuestionLayout-___CodeQuestionLayout"] when(@vertical = 1) {
+        min-height: 85vh;
+        width: unset;
     }
   }
 }
